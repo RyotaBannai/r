@@ -14,6 +14,10 @@
   - [install vscode R extention](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)
   - `From vscode setting, select R > Plot: Use httpgd to use for R plot.`
   - run script on vscode 
+
+- [(R)10進数から2進数への変換](https://yusap.hatenadiary.org/entry/20130517/1368770991)
+- [【R言語】文字列の操作・正規表現](https://multivariate-statistics.com/2021/09/03/r-programming-regular-expression/)
+- [R言語　ベクトルやリストの操作　appendやinsertを導入する【自作関数】](https://multivariate-statistics.com/2021/01/29/r-programming-vector-list/#Append)
 # Library
 - Rcpp 1.0.9
 - stringr 1.5.0

@@ -1,4 +1,7 @@
 library(tidyverse)
+library(magrittr)
+library(dplyr)
+library(jsonlite)
 
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))
@@ -10,3 +13,9 @@ ggplot(data = mpg) +
 
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
+
+pp <- function(any) {
+  any %>%
+    toJSON() %>%
+    prettify()
+}
