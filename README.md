@@ -18,6 +18,9 @@
 - [(R)10進数から2進数への変換](https://yusap.hatenadiary.org/entry/20130517/1368770991)
 - [【R言語】文字列の操作・正規表現](https://multivariate-statistics.com/2021/09/03/r-programming-regular-expression/)
 - [R言語　ベクトルやリストの操作　appendやinsertを導入する【自作関数】](https://multivariate-statistics.com/2021/01/29/r-programming-vector-list/#Append)
+## plot
+- https://community.rstudio.com/t/plotly-animation-in-shiny-app-my-data-frame-does-not-get-recognized/52406
+- https://kazutan.github.io/kazutanR/plotly_intro.html
 # Library
 - Rcpp 1.0.9
 - stringr 1.5.0
@@ -29,3 +32,8 @@
 - lubridate 1.9.2
 - readr 2.1.4
 
+## other
+- [dplyr](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf)
+
+# ガウス過程
+- [サポートサイト](http://chasen.org/~daiti-m/gpbook/)
