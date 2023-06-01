@@ -13,11 +13,11 @@ library(magrittr)
 dat <- readLines("stdin", n = 4) %>%
   strsplit(" ") %>%
   as.numeric()
-x <- dat[[4]]
+x <- dat[4]
 count <- 0
-for (i in 0:dat[[1]]) {
-  for (j in 0:dat[[2]]) {
-    for (k in 0:dat[[3]]) {
+for (i in 0:dat[1]) {
+  for (j in 0:dat[2]) {
+    for (k in 0:dat[3]) {
       ret <- 500 * i + 100 * j + 50 * k
       if (ret == x) {
         count <- count + 1
