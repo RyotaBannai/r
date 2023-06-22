@@ -1,0 +1,14 @@
+---
+title: "My Notebook"
+output: html_notebook
+---
+# RmdでNotebook も作れる
+- [参考](https://bookdown.org/yihui/rmarkdown/notebook.html?version=2023.03.1%2B446&mode=desktop)
+
+```{r}
+st = "test"
+```
+
+```{r}
+print(st)
+```
