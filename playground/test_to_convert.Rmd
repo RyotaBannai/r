@@ -1,0 +1,12 @@
+---
+title: "My Notebook"
+output: html_notebook
+---
+
+This is markdown comment
+
+
+```{r }
+# This is R script!
+print('hi')
+```
