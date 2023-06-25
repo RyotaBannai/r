@@ -20,7 +20,6 @@
       - 作成した `Rmd` の先頭に次のようなメタデータを入れる. これを入れると Rstudio が自動で`{script_name}.nb.html`を作成する.
   - `Rmd` に対して、`jupytext --to notebook {script_name}.Rmd` を実行すると、Notebook が作成される.
   - `jupytext` はpip で事前にinstall しておく.
-  
       
 ```yaml
 ---
@@ -28,3 +27,14 @@ title: "My Notebook"
 output: html_notebook
 ---
 ```
+
+
+- Jupyter notebookでR を使う.
+  - `install.packages("devtools")`
+  - `devtools::install_github("IRkernel/IRkernel")`
+  - `system.file('kernelspec', package = 'IRkernel')`
+  - `jupyter kernelspec list` (run this to be sure that jupyter is in your path, you should see information about the current available kernels.
+  - `R_PAHT = system.file('kernelspec', package = 'IRkernel')`
+  - `jupyter kernelspec install {R_PAHT} --name 'R' --user` (you will use path that you received while working in R which could be different)
+  - `jupyter kernelspec list` (this list should now include R)
+  - [参考](https://stackoverflow.com/a/65042753/5590919)
