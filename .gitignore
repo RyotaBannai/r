@@ -4,3 +4,4 @@
 .Rhistory
 r.Rproj
 *.html
+*/.ipynb_checkpoints/
