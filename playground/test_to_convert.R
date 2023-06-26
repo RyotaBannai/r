@@ -4,4 +4,4 @@
 
 #+
 # This is R script!
-print('hi')
+cat('hi')
