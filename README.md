@@ -40,3 +40,6 @@ output: html_notebook
   - `jupyter kernelspec install {R_PAHT} --name 'R' --user` (you will use path that you received while working in R which could be different)
   - `jupyter kernelspec list` (this list should now include R)
   - [参考](https://stackoverflow.com/a/65042753/5590919)
+
+- Jupyter notebook 一般的な操作
+  - 起動: `jupyter notebook`
