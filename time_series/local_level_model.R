@@ -24,13 +24,19 @@ fit.1 <- dlmMLE(
 )
 
 DLM <- build.1(fit.1$par)
-NileFilt <- dlmFilter(Nile,DLM)　# カルマンフィルタ
+NileFilt <- dlmFilter(Nile, DLM)　# カルマンフィルタ
 NileSmooth <- dlmSmooth(NileFilt) # スムージング
 
 
 # 引っ張った線はナイル川の流量の見えない「状態」を表す
-#１９２０年の流量の見えない「状態」を１９２０年までの観測結果から推定したのが赤い線（フィルタリングの結果）
+# １９２０年の流量の見えない「状態」を１９２０年までの観測結果から推定したのが赤い線（フィルタリングの結果）
 # 手持ちの100年間のデータすべてをフルに使って状態を推定したのが青い線（スムージング）の結果
-plot(Nile, type="o", col=8, ylab="", main="Nile Filtering") # ナイル川の流量データ
-lines(dropFirst(NileFilt$m), col=2, lwd=2)
-lines(dropFirst(NileSmooth$s), col=4, lwd=2)
+plot(
+  Nile,
+  type = "o",
+  col = 8,
+  ylab = "",
+  main = "Nile Filtering"
+) # ナイル川の流量データ
+lines(dropFirst(NileFilt$m), col = 2, lwd = 2)
+lines(dropFirst(NileSmooth$s), col = 4, lwd = 2)
