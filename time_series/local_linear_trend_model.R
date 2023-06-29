@@ -76,9 +76,9 @@ plot(data,
      col = 1,
      type = "o",
      main = "data")
-#　レベル＋トレンド成分
+# レベル＋トレンド成分
 plot(dropFirst(Smooth.1$s)[, 1], col = 4, main = "level+trend")
-#季節成分
+# 季節成分
 plot(dropFirst(Smooth.1$s)[, 3], col = 4, main = "seasonal")
 par(mfrow = c(1, 1))
 

@@ -67,7 +67,7 @@ legend(
   legend = c("data", "Filter", "Smooth")
 )
 
-# 事変係数が推測できてるか？
+# 時変係数を推測できてるか？
 plot(dropFirst(filterDlmReg$m)[,2], type="l", ylim=c(0,15), col=alpha(2, 0.5),xlab='day', ylab='slope')
 lines(dropFirst(smoothDlmReg$s)[,2], type="l", ylim=c(0,15), col=alpha(4, 0.5))
 
