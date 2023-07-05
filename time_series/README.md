@@ -1,0 +1,6 @@
+- 環境変数の読み込み
+- `.env` 名前と配置場所は任意.
+- 中身をshell の環境変数の形式に設定
+  - 例) `TOKEN=XXXXX`
+- `readRenviron('time_series/.env')` で作成したファイル名を指定して、その中にある環境変数を読み込む.
+- `Sys.getenv('TOKEN')` のように環境変数を取り出す.
