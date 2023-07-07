@@ -65,7 +65,8 @@ colnames(df) <-
 mizuho_xts <- as.xts(read.zoo(df))
 # ローソク足のグラフを描く
 chartSeries(mizuho_xts,
-            type = "candlesticks")
+            type = "candlesticks",
+            TA="addSMA(n=25, col='white'); addSMA(n=75, col='green'); addVo()") # 移動平均の線を入れる.
 
 # 対数差分系列にする. (和分系列を元に戻す、対数をとることで、データを正規分布に合わせる）
 log_diff = diff(log(mizuho_xts$Close))[-1]  #0 index 目は存在しなく、差分はNA になるから先頭を削除
