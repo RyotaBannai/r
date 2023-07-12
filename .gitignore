@@ -6,3 +6,4 @@ r.Rproj
 *.html
 */.ipynb_checkpoints/
 .env
+*.rds
