@@ -7,3 +7,4 @@ r.Rproj
 */.ipynb_checkpoints/
 .env
 *.rds
+*.dic

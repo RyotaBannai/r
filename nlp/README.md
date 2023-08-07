@@ -1,0 +1,51 @@
+# セットアップ
+- mecab とRバインドをインストール
+  - [M1 macでRMeCabをインストールする際の注意事項](https://qiita.com/TSeri/items/a5fb830ed466d5b8ad7d) を参考.
+# ユーザ辞書のセットアップ
+- `mecab-config --sysconfdir` でmecab の設定ファイルを探す.
+  - `/usr/local/etc/mecabrc` のような `mecabrc` が見つかる.
+  - 設定ファイル内の
+    - `dicdir` がmecab のコアの辞書（`システム辞書`）（もちろん別のものに変更することもできる）
+      - `/usr/local/lib/mecab/dic/ipadic` などが指定されている（Apple Silicon M2の場合）
+        - デフォルトは「IPA辞書」
+        - UniDic辞書,[NEologd辞書](https://github.com/neologd/mecab-ipadic-neologd) などあるらしい.
+          - NEologd をユーザ辞書として使うこともできる！（ダウンロードして `mecabrc`の`userdic`にパスを指定）
+          - `mecab -D` でcheck.
+        - NEologd辞書
+          - Web 上の言語資源から得た新語を追加した MeCab 用の辞書で、これを使うことで新語に対応した形態素解析が可能となる
+      - この設定ファイルを変更しなくとも、mecab を実行する時につどオプションで指定すれば上書きされて採用される.
+        - RMecab の`docDF` の引数には用意されていないっぽい.
+      - `mecabrc` から直接確認してもいいし、探索しても良い
+        - `mecab-config --dicdir` で持っている辞書が保管されてている？フォルダが見つかる.
+        - `sudo find / -name ipadic` でデフォルトの辞書のパスが先頭あたりに出てくる.
+    - `userdic` がユーザー自身が生成した辞書のパスを指定する変数.
+      - ユーザー辞書を作成するのは少し面倒.
+- ユーザー辞書の生成
+  - まずCSV から（CSVに定義されたタームに対してコストをつけて、）辞書を作成するためのコマンドを探す. `mecab-dict-index` が必要.
+  - `sudo find / -name mecab-dict-index`
+  - `/usr/local/libexec/mecab/mecab-dict-index` あたりが目的のコマンド.
+  - `mecab-dict-index` を次のように実行.
+    - `/usr/local/libexec/mecab/mecab-dict-index -d  /usr/local/lib/mecab/dic/ipadic -u user.dic -f utf8 -t utf8 user.csv`
+    - `-d DIR`: システム辞書があるディレクトリ
+    - `-u FILE`: FILE というユーザファイルを作成
+    - `-f charset`: CSVの文字コード
+    - `-t charset`: バイナリ辞書の文字コード
+  - 上記コマンドで生成した`.dic` を`mecabrc` やR の`dic=`引数へ渡すことで、ユーザー辞書が参照される.
+
+- 辞書(元のCSV)の書き方
+  - 単語はよしなに加える
+  - 動詞は各活用形を書かなければならない
+  - CSV に初めから、コストをかけない時は、適当？に付与しても良い. コストが小さいほどそのタームが現れやすいタームとして判定される. うまくいかないときは小さくしていくと良い.
+    - 適当に決めたくない時は、model をダウンロードして機械的に決めてあげる方法もある.
+    - [こちらを参考](https://zenn.dev/suyaa/articles/cb8a7e0c2767b3#csv-%E3%81%AB%E3%82%B3%E3%82%B9%E3%83%88%E3%82%92%E4%BB%98%E4%B8%8E%E3%81%99%E3%82%8B)
+      - model をダウンロードして、`/usr/local/Cellar/mecab/0.996/libexec/mecab/mecab-dict-index -m mecab-ipadic-2.7.0-20070801.model ... ` とすると、指定したCSV のコストに機械的に計算したコストが設定される.
+- [単語の追加方法](http://taku910.github.io/mecab/dic.html)
+- [MeCabでオリジナル辞書を作成する](https://qiita.com/nnahito/items/16c8e214d71fbc23ed8e)
+- [MeCabとRMeCabのインストール、NEologd辞書への変更、ユーザ辞書登録をやり直す（Mac OS）](https://blog.statsbeginner.net/entry/2022/12/04/070510)
+- [MeCab + neologd 辞書環境でユーザ辞書を追加する](https://zenn.dev/suyaa/articles/cb8a7e0c2767b3)
+  - `システム辞書とユーザ辞書の関係` あたりが参考になる
+- [MeCabのコスト計算について](https://qiita.com/Taka_input/items/ae500a5c4440fa2e091e)
+- [mecab-ipadic-NEologdをインストール](https://qiita.com/taroc/items/b9afd914432da08dafc8)
+- [NEologdとは](https://resanaplaza.com/2022/05/08/%E3%80%90%E8%B6%85%E7%B5%B6%E7%B0%A1%E5%8D%98%E3%80%91windows-%E3%81%AEpython%EF%BC%8Bmecab%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%BE%9E%E6%9B%B8%E3%81%ABneologd%E3%82%92%E4%BD%BF%E3%81%86/)
+- [MeCabのデフォルト辞書を変更する【Mac】](https://qiita.com/shimajiroxyz/items/e488e9b28a56e908e7cb)
+- [MeCabの設定ファイルや辞書、ツールの配置場所をコマンドで取得する](https://analytics-note.xyz/programming/mecab-config-get-dir/)
