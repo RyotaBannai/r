@@ -8,3 +8,5 @@ r.Rproj
 .env
 *.rds
 *.dic
+.metals/
+.vscode/
