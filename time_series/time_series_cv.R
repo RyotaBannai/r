@@ -6,7 +6,7 @@ library(gridExtra)
 # 対象データ
 # Monthly Airline Passenger Numbers 1949-1960
 # 対数変換したものを使う
-log_air_pass = log(AirPassengers)
+log_air_pass <- log(AirPassengers)
 class(log_air_pass)
 ggtsdisplay(log_air_pass)
 print(log_air_pass, digits = 4)
@@ -39,4 +39,3 @@ autoplot(f_sarima, main = "SARIMAによる予測")
 # 予測の評価. train, test それぞれのデータに対する予測評価がわかる.
 accuracy(f_sarima, test)
 # ナイーブな予測と比較して、整然データを作成. RMSEの誤差を棒グラフなどのにすると視覚的に理解できる.
-

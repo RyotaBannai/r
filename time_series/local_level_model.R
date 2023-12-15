@@ -24,7 +24,7 @@ fit.1 <- dlmMLE(
 )
 
 DLM <- build.1(fit.1$par)
-NileFilt <- dlmFilter(Nile, DLM)　# カルマンフィルタ
+NileFilt <- dlmFilter(Nile, DLM) # カルマンフィルタ
 NileSmooth <- dlmSmooth(NileFilt) # スムージング
 
 

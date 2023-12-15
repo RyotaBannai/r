@@ -1,35 +1,37 @@
 ```{r }
 # ローカル線形トレンドモデル
 # ローカルレベルモデル +トレンド
-
 ```
 
 ```{r }
 library(dlm)
 knitr::opts_chunk$set(dev = "cairo_pdf", dev.args = list(family = "ipaexg"))
-
 ```
 
 ```{r }
 # 季節成分とトレンド両方がありそうなデータとして、AirPassengersというデータを利用
 # もともとのデータを対数変換したものを解析の対象とする
-data = log(AirPassengers)
-#　1959年以降を切り落とす
+data <- log(AirPassengers)
+# 　1959年以降を切り落とす
 test.data <- window(data, end = c(1958, 12))
 
-#　Step1
-#　モデル作成のための関数を作る
+# 　Step1
+# 　モデル作成のための関数を作る
 build.1 <- function(theta) {
-  dlmModPoly(order = 2,
-             dV = exp(theta[1]),
-             dW = c(exp(theta[2]), exp(theta[3]))) +
-    dlmModSeas(fr = 12,
-               dW = c(theta[4], rep(0, 10)),
-               dV = 0)
+  dlmModPoly(
+    order = 2,
+    dV = exp(theta[1]),
+    dW = c(exp(theta[2]), exp(theta[3]))
+  ) +
+    dlmModSeas(
+      fr = 12,
+      dW = c(theta[4], rep(0, 10)),
+      dV = 0
+    )
 }
 
-#　Step2
-#　MLEでパラメタ推定。
+# 　Step2
+# 　MLEでパラメタ推定。
 fit.1 <- dlmMLE(
   test.data,
   parm = dlmMLE(
@@ -55,15 +57,18 @@ Smooth.1 <- dlmSmooth(Filt.1)
 
 
 plot(test.data,
-     col = 1,
-     type = "o",
-     lwd = 1)
+  col = 1,
+  type = "o",
+  lwd = 1
+)
 lines(dropFirst(Filt.1$m)[, 1] + dropFirst(Filt.1$m)[, 3],
-      col = 2,
-      lwd = 2)
+  col = 2,
+  lwd = 2
+)
 lines(dropFirst(Smooth.1$s)[, 1] + dropFirst(Smooth.1$s)[, 3],
-      col = 4,
-      lwd = 2)
+  col = 4,
+  lwd = 2
+)
 
 legend(
   "bottomright",
@@ -78,14 +83,15 @@ legend(
 
 ```{r }
 par(mfrow = c(3, 1))
-#　元データ
+# 　元データ
 plot(data,
-     col = 1,
-     type = "o",
-     main = "data")
-#　レベル＋トレンド成分
+  col = 1,
+  type = "o",
+  main = "data"
+)
+# 　レベル＋トレンド成分
 plot(dropFirst(Smooth.1$s)[, 1], col = 4, main = "level+trend")
-#季節成分
+# 季節成分
 plot(dropFirst(Smooth.1$s)[, 3], col = 4, main = "seasonal")
 par(mfrow = c(1, 1))
 ```
@@ -95,7 +101,7 @@ par(mfrow = c(1, 1))
 ```{r }
 Fore <- dlmForecast(Filt.1, nAhead = 24, sampleNew = 5)
 
-#　予測の答え合わせ
+# 　予測の答え合わせ
 plot(data, type = "o")
 lines(dropFirst(Smooth.1$s)[, 1] + dropFirst(Smooth.1$s)[, 3], col = 4)
 lines(Fore$f, col = 2, lwd = 2)

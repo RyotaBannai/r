@@ -4,7 +4,7 @@
 set.seed(1)
 white.noise <- rnorm(n = 400) # 正規分布
 plot(white.noise, type = "l")
-acf(white.noise)　# 自己相関が無いかどうか確認
+acf(white.noise) # 自己相関が無いかどうか確認
 
 library(forecast)
 model.noise <- auto.arima(
@@ -20,5 +20,5 @@ model.noise <- auto.arima(
   approximation = F,
   # parallel = T
 )
-plot(forecast(model.noise, h=100), flwd=5)
-abline(h=mean(white.noise))
+plot(forecast(model.noise, h = 100), flwd = 5)
+abline(h = mean(white.noise))

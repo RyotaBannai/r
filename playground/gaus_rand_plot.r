@@ -26,7 +26,7 @@ label <- rep("rvals", n) # 上書き
 df2 <- as.data.frame(cbind(z1, label))
 
 df3 <- rbind(df, df2) # row bind
-df3$z1 <-as.numeric(df3$z1) # coerce to double precision
+df3$z1 <- as.numeric(df3$z1) # coerce to double precision
 
 library("ggplot2")
 ggplot(df3, aes(x = z1, color = label, fill = label)) +

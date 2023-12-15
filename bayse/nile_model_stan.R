@@ -4,11 +4,11 @@ require(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 
-NileData = list(Nile = as.numeric(Nile), n = length(Nile))
+NileData <- list(Nile = as.numeric(Nile), n = length(Nile))
 
 set.seed(1)
-NileModel_1 = stan(
-  file = './Documents/dev/r/r/bayse/llm_no_state_change.stan',
+NileModel_1 <- stan(
+  file = "./Documents/dev/r/r/bayse/llm_no_state_change.stan",
   data = NileData,
   iter = 1500,
   warmup = 500,

@@ -9,7 +9,7 @@ white.noise <- rnorm(n = 400) # 正規分布
 random.walk <- cumsum(white.noise)
 par(family = "HiraKakuProN-W3") # plot するグラフの日本語化
 plot(random.walk, type = "l", main = "和分過程：ランダムウォーク")
-acf(random.walk)　# 自己相関が無いかどうか確認
+acf(random.walk) # 自己相関が無いかどうか確認
 
 
 model.RW <- auto.arima(

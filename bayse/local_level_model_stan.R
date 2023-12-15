@@ -8,11 +8,11 @@ require(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 
-NileData = list(Nile = as.numeric(Nile), n = length(Nile))
+NileData <- list(Nile = as.numeric(Nile), n = length(Nile))
 
 set.seed(1)
 Nile_LocalLevelModel_1 <- stan(
-  file = './Documents/dev/r/r/bayse/local_level_model.stan',
+  file = "./Documents/dev/r/r/bayse/local_level_model.stan",
   data = NileData,
   iter = 30000,
   warmup = 1000,
@@ -22,4 +22,3 @@ Nile_LocalLevelModel_1 <- stan(
 
 # 計算の過程を図示
 traceplot(Nile_LocalLevelModel_1, pars = c("sigmaV", "sigmaW"))
-

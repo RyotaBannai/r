@@ -9,6 +9,6 @@ To render to Rmd format, Press Ctrl/ Cmd + Shift + K
 
 ```{r }
 # This is R script!
-cat('hi')
+cat("hi")
 ```
 
